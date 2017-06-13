@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="frameWork/js/angular.min.js"></script>
+    <script src="frameWork/js/angular-route.min.js"></script>
+    <script>
+        var app = angular.module('myApp',[]);
+        app.controller('oneController',function ($scope) {
+            $scope.types = [{
+                id:1,
+                realName:'单选题'
+            },{
+                id:2,
+                realName:'多选题'
+            }];
+            $scope.id1 = 1;
+            $scope.id1 = $scope.types[0];
+            $scope.id2 = 1;
+        })
+    </script>
+</head>
+<body ng-controller="oneController">
+    <!--第一种-->
+    {{id1}}
+    <select ng-model="id">
+        <option ng-repeat="type in types" value="{{type.id}}">
+            {{type.realName}}
+        </option>
+    </select>
+    <!--第二种-->
+    {{id1}}
+    <select ng-options="type in types">
+        <option ng-model="id"  ng-options="type.realName for  type in types" value="{{type.id}}">
+            {{type.realName}}
+        </option>
+    </select>
+    <!--第三种-->
+    {{id2}}
+    <select ng-model="id2" ng-options="type.id as type.realName for type in types">
+
+    </select>
+</body>
+</html>
